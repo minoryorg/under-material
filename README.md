@@ -1,4 +1,4 @@
-# Under Strap
+# Under Material
 
 WordPressの標準的なテーマを作ったばい！  
 「Under Material」とは、**Underscores**と**Bootstrap**と**Material Design**を合わせたやつ。  
@@ -112,7 +112,7 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
     }
     add_action('init', 'under_material_navswatch');
 
-実際に読み込んでいるところは、さっき書いた**material_strap_scripts()**関数の中とheader.phpに追加したけん。  
+実際に読み込んでいるところは、**functions.php**の**under_material_widgets_init()**関数の中と**header.php**に追加したけん。  
 
 ### functions.php
     function under_material_widgets_init() {
