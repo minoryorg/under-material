@@ -1,45 +1,132 @@
-[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
+# Under Strap
 
-_s
-===
+WordPressの標準的なテーマを作ったばい！  
+「Under Material」とは、**Underscores**と**Bootstrap**と**Material Design**を合わせたやつ。  
+早い話、GoogleさんみたいなUIになるとばい！
 
-Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+### Underscores
+<http://underscores.me/>
 
-My ultra-minimal CSS might make me look like theme tartare but that means less stuff to get in your way when you're designing your awesome theme. Here are some of the other more interesting things you'll find here:
+WordPressの標準的なテーマ。  
+「**Theme Name**」にテーマ名を入れて、「**GENERATE**」ボタンを押すだけ。  
+簡単にテーマの基礎ができあがり！  
 
-* A just right amount of lean, well-commented, modern, HTML5 templates.
-* A helpful 404 template.
-* A custom header implementation in `inc/custom-header.php` just add the code snippet found in the comments of `inc/custom-header.php` to your `header.php` template.
-* Custom template tags in `inc/template-tags.php` that keep your templates clean and neat and prevent code duplication.
-* Some small tweaks in `inc/extras.php` that can improve your theming experience.
-* A script at `js/navigation.js` that makes your menu a toggled dropdown on small screens (like your phone), ready for CSS artistry. It's enqueued in `functions.php`.
-* 2 sample CSS layouts in `layouts/` for a sidebar on either side of your content.
-* Smartly organized starter CSS in `style.css` that will help you to quickly get your design off the ground.
-* Licensed under GPLv2 or later. :) Use it to make something cool.
+### Bootstrap
+<http://getbootstrap.com/>
 
-Getting Started
----------------
+皆さんご存知、レスポンシブデザインに対応したCSSフレームワーク。  
+PCとスマホの両方のデザインを作るのは面倒くさかけん、これが一番やね。  
+バージョンは3.3.7を使用。  
 
-If you want to keep it simple, head over to http://underscores.me and generate your `_s` based theme from there. You just input the name of the theme you want to create, click the "Generate" button, and you get your ready-to-awesomize starter theme.
+### Material Design for Bootstrap
+<http://fezvrasta.github.io/bootstrap-material-design/>
 
-If you want to set things up manually, download `_s` from GitHub. The first thing you want to do is copy the `_s` directory and change the name to something else (like, say, `megatherium`), and then you'll need to do a five-step find and replace on the name in all the templates.
+Bootstrapをマテリアルデザインに変えてくれるCSSフレームワーク。  
+書き方はBootstrapとほぼ同じやけん、勉強しなおさんでもよかと。  
+バージョンは0.5.10を使用。    
 
-1. Search for `'_s'` (inside single quotations) to capture the text domain.
-2. Search for `_s_` to capture all the function names.
-3. Search for `Text Domain: _s` in style.css.
-4. Search for <code>&nbsp;_s</code> (with a space before it) to capture DocBlocks.
-5. Search for `_s-` to capture prefixed handles.
+## Underscoresから修正した内容
 
-OR
+まず、CSSとJSを読み込ませるために「**functions.php**」を変更したと。  
+直接ファイルは入れずに、**CDN**を使っとるけん。  
+あ、ついでに**Font Awesome**も入れてます。  
 
-* Search for: `'_s'` and replace with: `'megatherium'`
-* Search for: `_s_` and replace with: `megatherium_`
-* Search for: `Text Domain: _s` and replace with: `Text Domain: megatherium` in style.css.
-* Search for: <code>&nbsp;_s</code> and replace with: <code>&nbsp;Megatherium</code>
-* Search for: `_s-` and replace with: `megatherium-`
+### functions.php
+    function material_strap_scripts() {
+    	・・・
+    	wp_enqueue_style( 'under-material-roboto', '//fonts.googleapis.com/css?family=Roboto:300,400,500,700' );
+    	wp_enqueue_style( 'under-material-icons', '//fonts.googleapis.com/icon?family=Material+Icons' );
+    	wp_enqueue_style( 'under-material-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
+    	wp_enqueue_style( 'under-material-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
+    	wp_enqueue_style( 'under-material-design', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css' );
+    	wp_enqueue_style( 'under-material-ripples', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css' );
+    	・・・
+        wp_enqueue_script( 'under-material-jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), '20151215', true );
+        wp_enqueue_script( 'under-material-bootstrap', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js', array(), '20151215', true );
+        wp_enqueue_script( 'under-material-design', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js', array(), '20151215', true );
+        wp_enqueue_script( 'under-material-ripples', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js', array(), '20151215', true );
+    	・・・
+    }
 
-Then, update the stylesheet header in `style.css` and the links in `footer.php` with your own information. Next, update or delete this readme.
+後は、Bootstrapの書き方の通り「**header.php**」ナビを追加したり、検索フォームのレイアウトを変えるために「**searchform.php**」を追加しとーけんね。（詳細はソースを見てね！）  
+んでね、当然これだけじゃグリッドレイアウトにならんけん、サイドバー（ウィジェット）やメインコンテンツのレイアウトが崩れるったい。 
+あんま好きじゃなかけど、できるだけUnderscoresのベースを変えたくなかけん、「**footer.php**」で後からjQueryでclassば差し込んどーと。  
+サイドバー（sidebar.php）は「col-md-4」、メインコンテンツ（index.php他）は「col-md-8」を入れとるよ。  
+比率は好きなように変えてんしゃい！  
+他のやり方があったら教えてね。  
 
-Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
+### footer.php
+    <script type="text/javascript">
+        // Content
+        $('.site-content').addClass('container');
+        $('.site-info').addClass('container');
+        $('.content-area').addClass('col-md-8');
+    	// Widget
+        $('.widget-area').addClass('col-md-4');
+        $('.widget > ul').addClass('nav nav-pills nav-stacked withripple');
+        // Recent Comments
+        $('.widget > #recentcomments').removeClass('');
+        $('.widget > #recentcomments').addClass('panel-body');
+        // Calendar
+        $('#calendar_wrap').addClass('panel-body');
+        $('#wp-calendar').addClass('table');
+        // Text
+        $('.textwidget').addClass('panel-body');
+        // Tag Cloud
+        $('.tagcloud').addClass('panel-body');
+        // Form
+        $('select,textarea,input:not([type=button],[type=submit])').addClass('form-control');
+        $('[type=submit]').addClass('btn btn-raised btn-default');
+        // Add to ...
+    });
+    </script>
 
-Good luck!
+## テーマオプションの追加
+
+これだけじゃ面白くなかろ？  
+そこで、このテンプレートの目玉！  
+6パターンの色を変更できる「テーマオプション」機能を追加しました！  
+
+管理画面の**「外観」＞「テーマオプション」**として追加したばい！  
+設定画面は「**admin-option.php**」ていうファイル追加したと。  
+ソースはtableタグでベタ書きしとーけん、あんまツッコまんでね...。  
+
+んで、管理画面の設定と値の保存は「functions.php」に書いとるよ。  
+
+### functions.php
+    function under_material_navswatch() {
+        add_option('color');
+        add_action('admin_menu', 'option_menu_create');
+        function option_menu_create() {
+            add_theme_page(esc_attr__( 'Theme Options' ), esc_attr__( 'Theme Options' ), 'edit_themes', basename(__FILE__), 'option_page_create');
+        }
+        function option_page_create() {
+            $saved = under_material_save_option();
+            require TEMPLATEPATH.'/admin-option.php';
+        }
+    }
+    function under_material_save_option() {
+        if (empty($_REQUEST['color'])) return;
+        $save = update_option('color', $_REQUEST['color']);
+        return $save;
+    }
+    add_action('init', 'under_material_navswatch');
+
+実際に読み込んでいるところは、さっき書いた**material_strap_scripts()**関数の中とheader.phpに追加したけん。  
+
+### functions.php
+    function under_material_widgets_init() {
+    	register_sidebar( array(
+    	・・・
+    		'before_widget' => '<section id="%1$s" class="panel panel-' . get_option( 'color' ) . ' widget %2$s">',
+    	・・・
+    	) );
+    }
+    
+### header.php
+	<nav class="navbar navbar-fixed-top navbar-<?php echo get_option( 'color' ); ?>">
+
+説明はここまで。  
+home.phpとかはあえて作らんかった。  
+そんなもん固定ページでなんとかなろーもん？  
+まぁ、色々言いたいことあるやろーけど、ベースのテンプレートを作るってことで、これくらいにしとこ。  
