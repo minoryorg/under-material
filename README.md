@@ -118,7 +118,7 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
     function under_material_widgets_init() {
         register_sidebar( array(
             ・・・
-    	    'before_widget' => '<section id="%1$s" class="panel panel-' . get_option( 'color' ) . ' widget %2$s">',
+            'before_widget' => '<section id="%1$s" class="panel panel-' . get_option( 'color' ) . ' widget %2$s">',
             ・・・
         ) );
     }
