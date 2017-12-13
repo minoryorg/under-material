@@ -33,7 +33,7 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
 
 ### functions.php
     function material_strap_scripts() {
-    	・・・
+        ・・・
         wp_enqueue_style( 'under-material-roboto', '//fonts.googleapis.com/css?family=Roboto:300,400,500,700' );
         wp_enqueue_style( 'under-material-icons', '//fonts.googleapis.com/icon?family=Material+Icons' );
         wp_enqueue_style( 'under-material-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
@@ -45,7 +45,7 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
         wp_enqueue_script( 'under-material-bootstrap', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js', array(), '20151215', true );
         wp_enqueue_script( 'under-material-design', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js', array(), '20151215', true );
         wp_enqueue_script( 'under-material-ripples', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js', array(), '20151215', true );
-    	・・・
+        ・・・
     }
 
 後は、Bootstrapの書き方の通り「**header.php**」ナビを追加したり、検索フォームのレイアウトを変えるために「**searchform.php**」を追加しとーけんね。（詳細はソースを見てね！）  
