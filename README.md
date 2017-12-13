@@ -57,11 +57,12 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
 
 ### footer.php
     <script type="text/javascript">
+    $(document).ready(function() {
         // Content
         $('.site-content').addClass('container');
         $('.site-info').addClass('container');
         $('.content-area').addClass('col-md-8');
-    	// Widget
+        // Widget
         $('.widget-area').addClass('col-md-4');
         $('.widget > ul').addClass('nav nav-pills nav-stacked withripple');
         // Recent Comments
@@ -78,6 +79,9 @@ Bootstrapをマテリアルデザインに変えてくれるCSSフレームワ�
         $('select,textarea,input:not([type=button],[type=submit])').addClass('form-control');
         $('[type=submit]').addClass('btn btn-raised btn-default');
         // Add to ...
+    });
+    $(function(){
+        $.material.init();
     });
     </script>
 
